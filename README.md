@@ -1,6 +1,6 @@
-# Diagnóstico relámpago · Acambaro.com.mx
+# Diagnóstico expréss · Acambaro.com.mx
 
-Sitio estático de demostración para el stand “Diagnóstico relámpago” en Conexión Emprendedora UnADM 2026 (18 al 20 de noviembre de 2026, CDMX).
+Sitio estático de demostración para el stand “Diagnóstico expréss” en Conexión Emprendedora UnADM 2026 (18 al 20 de noviembre de 2026, CDMX).
 
 El sitio **no recaba datos**: explica el servicio y dirige a un formulario externo. Sin analytics, cookies, fuentes externas ni scripts de terceros.
 
@@ -48,12 +48,12 @@ Abre `http://localhost:8000`.
 
 ## Generar el código QR
 
-1. La URL de la página es `https://atapia9.github.io/diagnostico-relampago/` (cámbiala si se configura un dominio propio).
+1. La URL de la página es `https://atapia9.github.io/diagnostico-expres/` (cámbiala si se configura un dominio propio).
 2. Genera el QR con cualquier generador que no exija registro, o desde terminal:
 
    ```bash
    pip install qrcode[pil]
-   qr "https://atapia9.github.io/diagnostico-relampago/" > qr-diagnostico.png
+   qr "https://atapia9.github.io/diagnostico-expres/" > qr-diagnostico.png
    ```
 3. Imprímelo al menos de 8 × 8 cm, con margen blanco, y **escanéalo con dos teléfonos distintos** antes de imprimir en cantidad.
 
