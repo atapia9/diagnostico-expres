@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Revisión del aviso · Diagnóstico exprés</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Solo para esta página interna de revisión */
+    .rev .contenedor { max-width: 84rem; }
+    .rev-grid { display: grid; gap: 1.5rem; }
+    .rev-panel {
+      background: var(--color-superficie);
+      border: 1px solid var(--color-borde);
+      border-radius: var(--radio);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    .rev-panel h2 { font-size: 1.2rem; }
+    .rev-opciones { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; margin: 0; padding: 0; border: 0; }
+    .rev-opciones legend { font-weight: 700; margin-bottom: .35rem; padding: 0; }
+    .rev-opciones label { display: inline-flex; align-items: center; gap: .4rem; cursor: pointer; }
+    .rev-filtros { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; }
+    .rev-filtros button, .rev-mini {
+      font: inherit; font-size: .9rem; font-weight: 600;
+      padding: .35rem .85rem; border-radius: 999px;
+      border: 2px solid var(--color-marca); background: var(--color-superficie);
+      color: var(--color-marca-oscuro); cursor: pointer;
+    }
+    .rev-filtros button[aria-pressed="true"] { background: var(--color-marca); color: #fff; }
+    .rev-progreso { height: .6rem; background: var(--color-borde); border-radius: 999px; overflow: hidden; margin: .5rem 0; }
+    .rev-progreso span { display: block; height: 100%; background: var(--color-marca); width: 0; transition: width .2s; }
+
+    .dato {
+      background: var(--color-superficie);
+      border: 1px solid var(--color-borde);
+      border-left: 6px solid #c9a227;
+      border-radius: var(--radio);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .dato[data-resuelto="true"] { border-left-color: #2e7d4f; }
+    .dato[hidden] { display: none; }
+    .dato-cabeza { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; font-size: .9rem; }
+    .dato h3 { margin: .35rem 0 .25rem; font-size: 1.1rem; color: var(--color-marca-oscuro); }
+    .num { font-weight: 700; color: var(--color-texto-suave); }
+    .chip { padding: .1rem .6rem; border-radius: 999px; font-weight: 700; font-size: .8rem; }
+    .chip-Indyra { background: #ece4f7; color: #4a2a78; }
+    .chip-Armando { background: #dcebef; color: #153742; }
+    .chip-estado { background: #fff4d6; color: #6b5200; }
+    .dato[data-resuelto="true"] .chip-estado { background: #dff3e6; color: #1d5634; }
+    .donde, .firma, .ayuda { font-size: .9rem; color: var(--color-texto-suave); margin-bottom: .5rem; }
+    .marcador { font-family: ui-monospace, Menlo, monospace; font-size: .8rem; background: #f1efe8; padding: .1rem .3rem; border-radius: 4px; word-break: break-word; }
+    .dato label.campo { display: block; font-weight: 600; margin: .75rem 0 .25rem; }
+    .dato textarea, .dato select {
+      width: 100%; font: inherit; font-size: 1rem;
+      padding: .55rem .7rem; border: 1px solid var(--color-borde); border-radius: 10px;
+      background: #fff; color: var(--color-texto);
+    }
+    .dato textarea { min-height: 4.5rem; resize: vertical; }
+    .dato textarea:disabled { background: #f1efe8; }
+    .dato .rev-opciones { margin-top: .5rem; font-size: .95rem; }
+    .alerta { color: #8a2d0b; font-weight: 600; font-size: .9rem; }
+    .dato-pie { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .5rem; margin-top: .5rem; }
+
+    .rev-vista iframe { width: 100%; height: 70vh; border: 1px solid var(--color-borde); border-radius: var(--radio); background: #fff; }
+    .leyenda-colores { font-size: .85rem; display: flex; gap: 1rem; flex-wrap: wrap; margin: 0 0 .5rem; }
+    .leyenda-colores mark { padding: 0 .3rem; border-radius: 3px; }
+    .m-nuevo { background: #c8ecd6; }
+    .m-pend { background: #ffe08a; }
+
+    .rev-botones { display: grid; gap: .75rem; }
+    .rev-botones .boton { min-height: 3rem; font-size: 1rem; cursor: pointer; font-family: inherit; }
+    #estado-msg { min-height: 1.5rem; font-weight: 600; color: var(--color-marca-oscuro); }
+
+    @media (min-width: 1100px) {
+      .rev-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+      .rev-vista { position: sticky; top: 1rem; }
+      .rev-vista iframe { height: calc(100vh - 9rem); }
+      .rev-botones { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body class="rev">
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <header class="encabezado">
+    <div class="contenedor">
+      <div>
+        <p class="marca">Acambaro.com.mx · Diagnóstico exprés</p>
+        <h1>Revisión del aviso de privacidad</h1>
+        <p class="borrador">Uso interno: esta página no se publica</p>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido" class="contenedor">
+    <section class="rev-panel" aria-labelledby="como">
+      <h2 id="como">Cómo usar esta página</h2>
+      <ol>
+        <li>Elija quién está editando.</li>
+        <li>Resuelva los datos que le tocan. Cada cambio queda firmado con su nombre y la fecha.</li>
+        <li>Revise la vista previa: en verde lo ya integrado, en amarillo lo pendiente.</li>
+        <li>Exporte sus respuestas (.json) y envíelas a la otra persona o a Armando. Al importarlas se integran con las suyas: gana la edición más reciente de cada dato.</li>
+        <li>Cuando todo esté resuelto, descargue el aviso actualizado. Ese archivo es el que va al último commit.</li>
+      </ol>
+      <p class="ayuda">Las respuestas se guardan solo en este navegador. Para compartirlas use “Exportar respuestas”.</p>
+    </section>
+
+    <section class="rev-panel" aria-labelledby="quien">
+      <h2 id="quien">¿Quién está editando?</h2>
+      <fieldset class="rev-opciones" id="editor">
+        <legend class="saltar">Persona que edita</legend>
+        <label><input type="radio" name="editor" value="Indyra"> Indyra (revisión legal)</label>
+        <label><input type="radio" name="editor" value="Armando"> Armando (operación)</label>
+      </fieldset>
+      <p class="alerta" id="sin-editor">Elija su nombre para poder editar.</p>
+    </section>
+
+    <section class="rev-panel" aria-labelledby="avance">
+      <h2 id="avance">Avance</h2>
+      <p id="resumen" aria-live="polite"></p>
+      <div class="rev-progreso" aria-hidden="true"><span id="barra"></span></div>
+      <div class="rev-filtros" role="group" aria-label="Filtrar datos">
+        <button type="button" data-filtro="todos" aria-pressed="true">Todos</button>
+        <button type="button" data-filtro="Indyra" aria-pressed="false">De Indyra</button>
+        <button type="button" data-filtro="Armando" aria-pressed="false">De Armando</button>
+        <button type="button" data-filtro="pendientes" aria-pressed="false">Pendientes</button>
+      </div>
+    </section>
+
+    <div class="rev-grid">
+      <section aria-labelledby="datos-titulo">
+        <h2 id="datos-titulo">Datos pendientes</h2>
+        <div id="lista"></div>
+      </section>
+
+      <section class="rev-vista" aria-labelledby="vista-titulo">
+        <h2 id="vista-titulo">Vista previa del aviso</h2>
+        <p class="leyenda-colores"><span><mark class="m-nuevo">Texto integrado</mark></span><span><mark class="m-pend">[ DATO ] pendiente</mark></span></p>
+        <div id="sin-fuente" class="rev-panel" hidden>
+          <p class="alerta">No se pudo leer <code>aviso-privacidad.html</code> automáticamente (pasa cuando la página se abre como archivo local).</p>
+          <label for="archivo-aviso">Elija el archivo <code>aviso-privacidad.html</code> de la misma carpeta:</label>
+          <input type="file" id="archivo-aviso" accept=".html,text/html">
+        </div>
+        <iframe id="vista" title="Vista previa del aviso con los cambios" sandbox="allow-same-origin"></iframe>
+      </section>
+    </div>
+
+    <section class="rev-panel" aria-labelledby="cerrar">
+      <h2 id="cerrar">Integrar y cerrar</h2>
+      <label><input type="checkbox" id="quitar-borrador"> Quitar la etiqueta “Borrador: pendiente de revisión legal” (solo en la versión final aprobada)</label>
+      <div class="rev-botones" style="margin-top:1rem">
+        <button type="button" class="boton boton-principal" id="descargar-aviso">Descargar aviso actualizado (.html)</button>
+        <button type="button" class="boton boton-secundario" id="exportar">Exportar respuestas (.json)</button>
+        <label class="boton boton-secundario" for="importar">Importar respuestas (.json)</label>
+        <button type="button" class="boton boton-secundario" id="borrar">Borrar respuestas de este navegador</button>
+      </div>
+      <input type="file" id="importar" accept=".json,application/json" hidden>
+      <p id="estado-msg" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <p>Herramienta interna de revisión. No sustituye la revisión legal.</p>
+      <p>Este material fue elaborado con asistencia de Claude (Anthropic) y revisado por [nombre].</p>
+    </div>
+  </footer>
+
+  <script>
+  (function () {
+    "use strict";
+
+    // Cada [ DATO ] del aviso y los pendientes operativos fuera del aviso.
+    // marcador: texto exacto en aviso-privacidad.html (null = fuera del aviso).
+    // ocurrencia: "todas" o el índice cuando el mismo marcador se repite.
+    // soloTexto: el marcador está dentro de una frase y necesita texto.
+    var DATOS = [
+      { id: "d1", titulo: "Nombre legal del responsable", quien: "Indyra", donde: "Sección 1 y pie",
+        marcador: "[ DATO: nombre legal del responsable, confirmar Indyra ]", ocurrencia: "todas", soloTexto: true,
+        ayuda: "Nombre de la persona física o moral responsable. Acambaro.com.mx no es persona jurídica. Se sustituye en la sección 1 y en el pie." },
+      { id: "d2", titulo: "Uso público del domicilio", quien: "Indyra", donde: "Sección 1",
+        marcador: "[ DATO: confirmar uso público del domicilio (fiscal o de contacto) ]", ocurrencia: "todas",
+        ayuda: "Si el domicilio se publica tal cual, elija “Quitar el marcador”. Si debe aclararse (fiscal o de contacto) o cambiar, escriba el texto que va después del domicilio." },
+      { id: "d3", titulo: "Responsable de respaldo del buzón de privacidad", quien: "Armando", donde: "Fuera del aviso (operación)",
+        marcador: null, ayuda: "Quién atiende privacidad@acambaro.com.mx si el titular del buzón no está, y confirmación de que el buzón está activo." },
+      { id: "d4", titulo: "Consentimiento para datos sensibles", quien: "Indyra", donde: "Sección 2",
+        marcador: "[ DATO: confirmar si se requiere consentimiento expreso aparte o si basta con eliminarlos ]", ocurrencia: "todas",
+        ayuda: "Si basta con eliminarlos, elija “Quitar el marcador”. Si se requiere consentimiento expreso, escriba el texto que lo pide." },
+      { id: "d5", titulo: "Base de la casilla de contacto comercial", quien: "Indyra", donde: "Sección 3",
+        marcador: "[ DATO: confirmar si requiere consentimiento específico o base distinta (Indyra) ]", ocurrencia: "todas",
+        ayuda: "Si la casilla opcional es suficiente, elija “Quitar el marcador”. Si no, escriba el texto que debe ir en el aviso." },
+      { id: "d6", titulo: "Casilla propia para la finalidad por ciudad o estado", quien: "Indyra", donde: "Sección 3",
+        marcador: "[ DATO: confirmar si la finalidad por ciudad o estado requiere casilla de consentimiento propia (Indyra) ]", ocurrencia: "todas",
+        ayuda: "Si basta con informarla, elija “Quitar el marcador”. Si requiere casilla, escriba el texto. Nota previa de Indyra: si implicara datos de grupos étnicos serían datos sensibles." },
+      { id: "d7", titulo: "Plazo de respuesta ARCO", quien: "Indyra", donde: "Sección 5",
+        marcador: "[ DATO: plazo de respuesta ARCO según la ley vigente ]", ocurrencia: "todas", soloTexto: true,
+        ayuda: "Escriba solo el plazo, sin punto final. La frase dice: “Responderemos en un plazo de ___.”" },
+      { id: "d8", titulo: "Autoridad competente", quien: "Indyra", donde: "Sección 5",
+        marcador: "[ DATO: nombre y datos de contacto de la autoridad vigente ]", ocurrencia: "todas", soloTexto: true,
+        ayuda: "Nombre de la autoridad vigente y su contacto (sitio o teléfono), sin punto final. La frase dice: “puede acudir ante ___.”" },
+      { id: "d9", titulo: "BAJA como mecanismo de revocación", quien: "Indyra", donde: "Sección 6",
+        marcador: "[ DATO: confirmar si BAJA basta como mecanismo de revocación (Indyra) ]", ocurrencia: "todas",
+        ayuda: "Si BAJA basta, elija “Quitar el marcador”. Si no, escriba el texto que lo complementa." },
+      { id: "d10", titulo: "Plazos de conservación", quien: "Indyra", donde: "Sección 6",
+        marcador: "[ DATO: plazos confirmados por Indyra ]", ocurrencia: "todas", soloTexto: true,
+        ayuda: "Sin punto final. La frase dice: “…cumplir las finalidades informadas: ___. Después, los bloqueamos…”. Propuesta pendiente de validar: hoja de respuestas 12 meses desde cada registro; prospectos mientras no revoquen y haya contacto en los últimos 12 meses; lista de supresión mientras exista la oposición; comentario libre 90 días, o de inmediato si contiene datos sensibles." },
+      { id: "d11", titulo: "Ubicación de los servidores de Google", quien: "Indyra", donde: "Sección 7",
+        marcador: "[ DATO: ubicación de servidores de Google ]", ocurrencia: "todas", soloTexto: true,
+        ayuda: "País o región, sin punto final." },
+      { id: "d12", titulo: "Ubicación de Google AI Studio (Gemini)", quien: "Indyra", donde: "Sección 7",
+        marcador: "[ DATO: ubicación ]", ocurrencia: 0, soloTexto: true,
+        ayuda: "País o región, sin punto final. Es la primera vez que aparece “[ DATO: ubicación ]”." },
+      { id: "d13", titulo: "Gemini: nivel de pago o declararlo en el aviso", quien: "Armando", donde: "Sección 7",
+        marcador: "[ DATO: decidir si se usa nivel de pago o si el aviso lo declara expresamente ]", ocurrencia: "todas",
+        ayuda: "En el nivel gratuito Google puede usar los datos para mejorar sus productos. Si se usa nivel de pago, elija “Quitar el marcador”. Si sigue el gratuito, escriba la frase que lo declara." },
+      { id: "d14", titulo: "Ubicación de Resend", quien: "Indyra", donde: "Sección 7",
+        marcador: "[ DATO: ubicación ]", ocurrencia: 1, soloTexto: true,
+        ayuda: "País o región, sin punto final. Es la segunda vez que aparece “[ DATO: ubicación ]”." },
+      { id: "d15", titulo: "Ubicación de Proton", quien: "Indyra", donde: "Sección 7",
+        marcador: "[ DATO: confirmar ubicación ]", ocurrencia: "todas", soloTexto: true,
+        ayuda: "País o región, sin punto final. Si se quita la copia oculta (dato 21), avise para borrar a Proton de la lista." },
+      { id: "d16", titulo: "Obligaciones de confidencialidad de los proveedores", quien: "Indyra", donde: "Sección 7",
+        marcador: "[ DATO: confirmar términos de servicio de Google, Resend, Gemini y Proton ]", ocurrencia: "todas", soloTexto: true,
+        ayuda: "Sin punto final. La frase dice: “…obligaciones de confidencialidad y de uso limitado de los datos: ___.”" },
+      { id: "d17", titulo: "Aviso por correo de cambios al aviso", quien: "Indyra", donde: "Sección 8",
+        marcador: "[ DATO: confirmar si además se avisará por correo a quienes aceptaron contacto (Indyra) ]", ocurrencia: "todas",
+        ayuda: "Si basta con publicar en la página, elija “Quitar el marcador”. Si también se avisará por correo, escriba la frase." },
+      { id: "d18", titulo: "Fecha de la versión final", quien: "Armando", donde: "Sección 9",
+        marcador: "[ DATO: fecha de la versión final ]", ocurrencia: "todas", soloTexto: true,
+        ayuda: "Por ejemplo “20 de noviembre de 2026”, sin punto final. Use la misma fecha en la columna de versión de la hoja (dato 20)." },
+      { id: "d19", titulo: "El formulario enlaza el aviso antes del envío", quien: "Armando", donde: "Fuera del aviso (formulario)",
+        marcador: null, ayuda: "Confirme que el formulario de Google muestra el enlace al aviso junto a la casilla, antes de enviar." },
+      { id: "d20", titulo: "Columna con la versión del aviso en la hoja", quien: "Armando", donde: "Fuera del aviso (hoja de respuestas)",
+        marcador: null, ayuda: "Confirme que la hoja de respuestas registra la versión (fecha) del aviso aceptado." },
+      { id: "d21", titulo: "Copia oculta en Proton", quien: "Armando", donde: "Fuera del aviso (afecta sección 7)",
+        marcador: null, ayuda: "Propuesta: quitar la copia oculta y registrar el envío en la hoja. Si se quita, Proton sale de la sección 7." },
+      { id: "d22", titulo: "Plazo de retención de Resend", quien: "Indyra", donde: "Fuera del aviso (afecta sección 6)",
+        marcador: null, ayuda: "Plazo que Resend conserva el historial de envíos, según su documentación." },
+      { id: "d23", titulo: "Aclaración de orientación preliminar en el correo", quien: "Indyra", donde: "Fuera del aviso (correo del diagnóstico)",
+        marcador: null, ayuda: "Decidir si el correo incluye la aclaración de que el texto es una orientación preliminar redactada con IA, o si se revisa una muestra antes de enviar." },
+      { id: "d24", titulo: "Obligaciones del correo comercial y BAJA", quien: "Indyra", donde: "Fuera del aviso (correo)",
+        marcador: null, ayuda: "El correo termina con una invitación a reunión comercial. Confirmar qué debe incluir (identificación del remitente, opción BAJA)." }
+    ];
+
+    var CLAVE = "revision-aviso-diagnostico-v1";
+    var estado = { editor: null, quitarBorrador: false, datos: {} };
+    var fuente = null;
+    var filtro = "todos";
+    var $ = function (id) { return document.getElementById(id); };
+
+    // ---------- almacenamiento local (opcional) ----------
+    function cargar() {
+      try {
+        var t = localStorage.getItem(CLAVE);
+        if (t) {
+          var e = JSON.parse(t);
+          if (e && typeof e === "object") estado = Object.assign(estado, e);
+        }
+      } catch (err) { /* sin almacenamiento: la página funciona igual */ }
+    }
+    function guardar() {
+      try { localStorage.setItem(CLAVE, JSON.stringify(estado)); } catch (err) {}
+    }
+
+    function resp(id) {
+      var r = estado.datos[id];
+      if (!r) { r = estado.datos[id] = { modo: "pendiente", texto: "", nota: "", quien: null, por: null, fecha: null }; }
+      return r;
+    }
+    function quienDe(d) { return resp(d.id).quien || d.quien; }
+    function resuelto(d) {
+      var r = resp(d.id);
+      if (r.modo === "quitar" || r.modo === "resuelto") return true;
+      return r.modo === "texto" && r.texto.trim() !== "";
+    }
+
+    function esc(s) {
+      return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+    function fechaLegible(iso) {
+      try { return new Date(iso).toLocaleString("es-MX", { dateStyle: "medium", timeStyle: "short" }); }
+      catch (err) { return iso; }
+    }
+
+    // ---------- lista de datos ----------
+    function construirLista() {
+      var lista = $("lista");
+      lista.innerHTML = "";
+      DATOS.forEach(function (d, i) {
+        var art = document.createElement("article");
+        art.className = "dato";
+        art.id = "card-" + d.id;
+        art.dataset.id = d.id;
+        var enAviso = !!d.marcador;
+        var nombre = "modo-" + d.id;
+        var opciones = enAviso
+          ? '<label><input type="radio" name="' + nombre + '" value="pendiente"> Pendiente</label>' +
+            '<label><input type="radio" name="' + nombre + '" value="texto"> Sustituir por texto</label>' +
+            (d.soloTexto ? "" : '<label><input type="radio" name="' + nombre + '" value="quitar"> Quitar el marcador (confirmado, sin texto)</label>')
+          : '<label><input type="radio" name="' + nombre + '" value="pendiente"> Pendiente</label>' +
+            '<label><input type="radio" name="' + nombre + '" value="resuelto"> Resuelto</label>';
+
+        art.innerHTML =
+          '<div class="dato-cabeza">' +
+            '<span class="num">#' + (i + 1) + '</span>' +
+            '<span class="chip chip-quien"></span>' +
+            '<span class="chip chip-estado"></span>' +
+          '</div>' +
+          '<h3>' + esc(d.titulo) + '</h3>' +
+          '<p class="donde">' + esc(d.donde) +
+            (enAviso ? ' · <span class="marcador">' + esc(d.marcador) + '</span>' : '') + '</p>' +
+          '<p class="ayuda">' + esc(d.ayuda) + '</p>' +
+          '<p class="alerta faltante" hidden>No se encontró este marcador en el aviso cargado.</p>' +
+          '<fieldset class="rev-opciones campos"><legend>Resolución</legend>' + opciones + '</fieldset>' +
+          '<label class="campo" for="texto-' + d.id + '">' + (enAviso ? "Texto que entra en el aviso" : "Decisión o respuesta") + '</label>' +
+          '<textarea id="texto-' + d.id + '" class="campos"></textarea>' +
+          '<label class="campo" for="nota-' + d.id + '">Nota interna (no se publica)</label>' +
+          '<textarea id="nota-' + d.id + '" class="campos"></textarea>' +
+          '<div class="dato-pie">' +
+            '<label>Lo resuelve: <select id="quien-' + d.id + '" class="campos" style="width:auto">' +
+              '<option value="Indyra">Indyra</option><option value="Armando">Armando</option></select></label>' +
+            (enAviso ? '<button type="button" class="rev-mini ver">Ver en el aviso</button>' : '') +
+          '</div>' +
+          '<p class="firma"></p>';
+        lista.appendChild(art);
+
+        var r = resp(d.id);
+        art.querySelectorAll('input[name="' + nombre + '"]').forEach(function (inp) {
+          inp.checked = inp.value === r.modo;
+          inp.addEventListener("change", function () { cambiar(d, { modo: inp.value }); });
+        });
+        if (!art.querySelector('input[name="' + nombre + '"]:checked')) {
+          art.querySelector('input[value="pendiente"]').checked = true;
+        }
+        var tx = $("texto-" + d.id), nt = $("nota-" + d.id), sel = $("quien-" + d.id);
+        tx.value = r.texto; nt.value = r.nota; sel.value = quienDe(d);
+        tx.addEventListener("input", function () {
+          var cambio = { texto: tx.value };
+          // Escribir texto implica sustituir (o resolver, fuera del aviso).
+          if (tx.value.trim() && resp(d.id).modo === "pendiente") {
+            cambio.modo = enAviso ? "texto" : "resuelto";
+            var radio = art.querySelector('input[value="' + cambio.modo + '"]');
+            if (radio) radio.checked = true;
+          }
+          cambiar(d, cambio);
+        });
+        nt.addEventListener("input", function () { cambiar(d, { nota: nt.value }); });
+        sel.addEventListener("change", function () { cambiar(d, { quien: sel.value }); });
+        var ver = art.querySelector(".ver");
+        if (ver) ver.addEventListener("click", function () { verEnAviso(d.id); });
+      });
+    }
+
+    function cambiar(d, cambio) {
+      if (!estado.editor) { mensaje("Elija primero quién está editando."); return; }
+      var r = resp(d.id);
+      Object.assign(r, cambio);
+      r.por = estado.editor;
+      r.fecha = new Date().toISOString();
+      guardar();
+      pintarTarjeta(d);
+      actualizarResumen();
+      programarVista();
+    }
+
+    function pintarTarjeta(d) {
+      var art = $("card-" + d.id);
+      var r = resp(d.id);
+      var ok = resuelto(d);
+      art.dataset.resuelto = ok ? "true" : "false";
+      var q = quienDe(d);
+      var chip = art.querySelector(".chip-quien");
+      chip.textContent = q;
+      chip.className = "chip chip-quien chip-" + q;
+      art.querySelector(".chip-estado").textContent = ok ? "Resuelto" : "Pendiente";
+      art.querySelector(".firma").textContent = r.fecha
+        ? "Última edición: " + r.por + " · " + fechaLegible(r.fecha)
+        : "Sin editar";
+      $("texto-" + d.id).disabled = !estado.editor || r.modo === "quitar";
+      art.querySelectorAll("fieldset.campos input, textarea.campos, select.campos").forEach(function (el) {
+        if (el.id !== "texto-" + d.id) el.disabled = !estado.editor;
+      });
+      var visible = filtro === "todos" || (filtro === "pendientes" ? !ok : q === filtro);
+      art.hidden = !visible;
+    }
+
+    function pintarTodo() { DATOS.forEach(pintarTarjeta); actualizarResumen(); }
+
+    function actualizarResumen() {
+      var total = DATOS.length, hechos = DATOS.filter(resuelto).length;
+      var por = { Indyra: [0, 0], Armando: [0, 0] };
+      DATOS.forEach(function (d) { var q = quienDe(d); por[q][1]++; if (resuelto(d)) por[q][0]++; });
+      $("resumen").textContent = hechos + " de " + total + " resueltos · Indyra " + por.Indyra[0] + "/" + por.Indyra[1] +
+        " · Armando " + por.Armando[0] + "/" + por.Armando[1];
+      $("barra").style.width = Math.round(100 * hechos / total) + "%";
+      $("sin-editor").hidden = !!estado.editor;
+    }
+
+    // ---------- aplicar respuestas al aviso ----------
+    function aplicar(html, marcar) {
+      var faltantes = {};
+      var grupos = {};
+      DATOS.forEach(function (d) { if (d.marcador) (grupos[d.marcador] = grupos[d.marcador] || []).push(d); });
+      Object.keys(grupos).forEach(function (m) {
+        var ds = grupos[m];
+        var partes = html.split(m);
+        ds.forEach(function (d) {
+          var n = partes.length - 1;
+          if (n === 0 || (d.ocurrencia !== "todas" && d.ocurrencia >= n)) faltantes[d.id] = true;
+        });
+        if (partes.length === 1) return;
+        var out = partes[0];
+        for (var i = 1; i < partes.length; i++) {
+          var d = ds.filter(function (x) { return x.ocurrencia === "todas" || x.ocurrencia === i - 1; })[0];
+          var r = d ? resp(d.id) : null;
+          var rep;
+          if (r && r.modo === "texto" && r.texto.trim()) {
+            var t = esc(r.texto.trim()).replace(/\n+/g, " ");
+            rep = marcar ? '<mark class="rev-nuevo" data-dato="' + d.id + '">' + t + "</mark>" : t;
+          } else if (r && r.modo === "quitar") {
+            out = out.replace(/[ \t]+$/, "");
+            rep = marcar ? '<mark class="rev-nuevo rev-quitado" data-dato="' + d.id + '"></mark>' : "";
+          } else {
+            rep = marcar && d ? '<mark class="rev-pend" data-dato="' + d.id + '">' + m + "</mark>" : m;
+          }
+          out += rep + partes[i];
+        }
+        html = out;
+      });
+      if (estado.quitarBorrador) html = html.replace(/\s*<p class="borrador">[^<]*<\/p>/, "");
+      if (marcar) {
+        html = html.replace("</head>",
+          "<style>mark.rev-nuevo{background:#c8ecd6}mark.rev-pend{background:#ffe08a}" +
+          "mark.rev-quitado{display:inline-block;width:.6rem;height:1rem;vertical-align:middle;background:#2e7d4f}" +
+          "mark.rev-foco{outline:3px solid #b4531a}</style></head>");
+      }
+      DATOS.forEach(function (d) {
+        if (!d.marcador) return;
+        var el = document.querySelector("#card-" + d.id + " .faltante");
+        if (el) el.hidden = !(fuente && faltantes[d.id]);
+      });
+      return html;
+    }
+
+    var temporizador = null;
+    function programarVista() { clearTimeout(temporizador); temporizador = setTimeout(pintarVista, 250); }
+    function pintarVista() {
+      if (!fuente) return;
+      var iframe = $("vista");
+      var y = 0;
+      try { y = iframe.contentWindow.scrollY; } catch (err) {}
+      iframe.onload = function () { try { iframe.contentWindow.scrollTo(0, y); } catch (err) {} };
+      iframe.srcdoc = aplicar(fuente, true);
+    }
+
+    function verEnAviso(id) {
+      try {
+        var doc = $("vista").contentDocument;
+        var el = doc && doc.querySelector('mark[data-dato="' + id + '"]');
+        if (!el) { mensaje("Este dato no está en la vista previa."); return; }
+        doc.querySelectorAll("mark.rev-foco").forEach(function (m) { m.classList.remove("rev-foco"); });
+        el.classList.add("rev-foco");
+        el.scrollIntoView({ block: "center" });
+        if (window.matchMedia("(max-width: 1099px)").matches) $("vista").scrollIntoView({ block: "start" });
+      } catch (err) { mensaje("No se pudo mostrar en la vista previa."); }
+    }
+
+    function cargarFuente() {
+      fetch("aviso-privacidad.html", { cache: "no-store" })
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+        .then(function (t) { fuente = t; $("sin-fuente").hidden = true; pintarVista(); })
+        .catch(function () { $("sin-fuente").hidden = false; });
+    }
+    $("archivo-aviso").addEventListener("change", function (e) {
+      var f = e.target.files[0];
+      if (!f) return;
+      f.text().then(function (t) { fuente = t; $("sin-fuente").hidden = true; pintarVista(); mensaje("Aviso cargado."); });
+    });
+
+    // ---------- descargar, exportar, importar ----------
+    function descargar(nombre, contenido, tipo) {
+      var url = URL.createObjectURL(new Blob([contenido], { type: tipo }));
+      var a = document.createElement("a");
+      a.href = url; a.download = nombre;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    }
+    function hoy() { return new Date().toISOString().slice(0, 10); }
+    function mensaje(t) { $("estado-msg").textContent = t; }
+
+    $("descargar-aviso").addEventListener("click", function () {
+      if (!fuente) { mensaje("Primero cargue el aviso."); return; }
+      var pend = DATOS.filter(function (d) { return d.marcador && !resuelto(d); }).length;
+      if (pend && !confirm("Quedan " + pend + " datos del aviso sin resolver; se conservarán como [ DATO ]. ¿Descargar de todos modos?")) return;
+      descargar("aviso-privacidad.html", aplicar(fuente, false), "text/html;charset=utf-8");
+      mensaje("Aviso descargado. Envíelo a Armando para el commit, junto con las respuestas exportadas.");
+    });
+
+    $("exportar").addEventListener("click", function () {
+      var datos = {};
+      DATOS.forEach(function (d) { if (estado.datos[d.id] && estado.datos[d.id].fecha) datos[d.id] = estado.datos[d.id]; });
+      var paquete = { formato: "revision-aviso-diagnostico", version: 1, exportado: new Date().toISOString(),
+        por: estado.editor, quitarBorrador: estado.quitarBorrador, datos: datos };
+      descargar("respuestas-aviso-" + (estado.editor || "sin-nombre").toLowerCase() + "-" + hoy() + ".json",
+        JSON.stringify(paquete, null, 2), "application/json");
+      mensaje("Respuestas exportadas (" + Object.keys(datos).length + " datos editados).");
+    });
+
+    $("importar").addEventListener("change", function (e) {
+      var f = e.target.files[0];
+      e.target.value = "";
+      if (!f) return;
+      f.text().then(function (t) {
+        var p;
+        try { p = JSON.parse(t); } catch (err) { mensaje("El archivo no es un JSON válido."); return; }
+        if (!p || p.formato !== "revision-aviso-diagnostico" || typeof p.datos !== "object") {
+          mensaje("El archivo no corresponde a esta revisión."); return;
+        }
+        var integrados = 0;
+        DATOS.forEach(function (d) {
+          var nuevo = p.datos[d.id];
+          if (!nuevo || !nuevo.fecha) return;
+          var actual = estado.datos[d.id];
+          if (!actual || !actual.fecha || nuevo.fecha > actual.fecha) {
+            estado.datos[d.id] = {
+              modo: ["pendiente", "texto", "quitar", "resuelto"].indexOf(nuevo.modo) >= 0 ? nuevo.modo : "pendiente",
+              texto: String(nuevo.texto || ""), nota: String(nuevo.nota || ""),
+              quien: nuevo.quien === "Indyra" || nuevo.quien === "Armando" ? nuevo.quien : null,
+              por: nuevo.por === "Indyra" || nuevo.por === "Armando" ? nuevo.por : null,
+              fecha: String(nuevo.fecha)
+            };
+            integrados++;
+          }
+        });
+        if (p.quitarBorrador) estado.quitarBorrador = true;
+        guardar();
+        construirLista(); pintarTodo(); pintarVista();
+        $("quitar-borrador").checked = estado.quitarBorrador;
+        mensaje("Se integraron " + integrados + " respuestas de " + (p.por || "otro archivo") + ". Las más recientes conservan su versión.");
+      });
+    });
+
+    $("borrar").addEventListener("click", function () {
+      if (!confirm("¿Borrar todas las respuestas guardadas en este navegador? Exporte antes si las necesita.")) return;
+      estado.datos = {}; estado.quitarBorrador = false;
+      guardar();
+      $("quitar-borrador").checked = false;
+      construirLista(); pintarTodo(); pintarVista();
+      mensaje("Respuestas borradas de este navegador.");
+    });
+
+    $("quitar-borrador").addEventListener("change", function (e) {
+      estado.quitarBorrador = e.target.checked; guardar(); programarVista();
+    });
+
+    // ---------- editor y filtros ----------
+    document.querySelectorAll('input[name="editor"]').forEach(function (inp) {
+      inp.checked = inp.value === estado.editor;
+      inp.addEventListener("change", function () { estado.editor = inp.value; guardar(); pintarTodo(); });
+    });
+    document.querySelectorAll(".rev-filtros button").forEach(function (b) {
+      b.addEventListener("click", function () {
+        filtro = b.dataset.filtro;
+        document.querySelectorAll(".rev-filtros button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+        pintarTodo();
+      });
+    });
+
+    // ---------- inicio ----------
+    cargar();
+    if (estado.editor !== "Indyra" && estado.editor !== "Armando") estado.editor = null;
+    document.querySelectorAll('input[name="editor"]').forEach(function (inp) { inp.checked = inp.value === estado.editor; });
+    $("quitar-borrador").checked = !!estado.quitarBorrador;
+    construirLista();
+    pintarTodo();
+    cargarFuente();
+  })();
+  </script>
+</body>
+</html>

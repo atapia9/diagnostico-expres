@@ -13,6 +13,7 @@ Actualizado: 19 de octubre de 2026
 |---|---|
 | `index.html` | Completo. Botón de registro al formulario (pestaña nueva); aviso visible; leyenda de demostración |
 | `aviso-privacidad.html` | Borrador con datos del formulario, finalidades y correo ARCO; pendiente de revisión legal |
+| `revision-aviso.html` | Herramienta interna para resolver cada `[ DATO ]` (Indyra o Armando) con vista previa, exportar/importar respuestas y descargar el aviso final. No se publica: el flujo de Pages no la copia |
 | `css/styles.css` | Mobile first; colores de marca son placeholders |
 | `js/config.js`, `js/main.js` | `FORM_URL` y `PRIVACY_URL`; no guarda nada en el navegador |
 | `README.md` | Cambio de URL, QR, checklist previo al evento |
