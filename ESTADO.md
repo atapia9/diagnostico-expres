@@ -30,6 +30,20 @@ Responsable: Jesús Armando Tapia Gallegos y Acambaro.com.mx. Contacto de privac
 - La página trae su propia copia de `aviso-privacidad.html`: si el aviso cambia en el repositorio, hay que volver a publicarla.
 - Al terminar, Claude lee las respuestas, actualiza el aviso y el Word, y hace el último commit en la rama `aviso-privacidad-v2`.
 
+## Propuesta simplificada del aviso
+`aviso-privacidad-simplificado.html` y `.docx`: 619 palabras y 10 datos pendientes, frente a 1,048 palabras y 17 de la versión completa. Indyra elige cuál se publica.
+
+Solo vale si se hacen estos cambios (Armando):
+- Quitar del formulario los campos “Ciudad o estado” y “Comentario breve”.
+- Quitar la copia oculta a Proton y registrar el envío en la hoja.
+- Usar Gemini en nivel de pago.
+
+Y si Indyra confirma que bastan:
+- Describir a los encargados por tipo, sin la ubicación de cada uno.
+- Un solo plazo de conservación para todos los datos.
+
+La página de revisión trabaja sobre la versión completa; si se elige la simplificada, hay que volver a publicarla.
+
 ## Pendientes
 **Legales (para revisión de Indyra)**
 1. Domicilio completo del responsable (sección 1).
