@@ -33,6 +33,8 @@ Responsable: Jesús Armando Tapia Gallegos y Acambaro.com.mx. Contacto de privac
 ## Propuesta simplificada del aviso
 `aviso-privacidad-simplificado.html` y `.docx`: 619 palabras y 10 datos pendientes, frente a 1,048 palabras y 17 de la versión completa. Indyra elige cuál se publica.
 
+Informe para Indyra y Armando con la comparación, condiciones, pendientes y el texto simplificado: `informe-simplificacion-aviso-privacidad.docx`.
+
 Solo vale si se hacen estos cambios (Armando):
 - Quitar del formulario los campos “Ciudad o estado” y “Comentario breve”.
 - Quitar la copia oculta a Proton y registrar el envío en la hoja.
