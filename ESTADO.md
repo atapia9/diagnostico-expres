@@ -66,4 +66,4 @@ La página de revisión trabaja sobre la versión completa; si se elige la simpl
 - Tablet con batería y conexión; aviso de privacidad visible en el stand.
 
 ---
-Este material fue elaborado con asistencia de Claude (Anthropic) y revisado por [nombre].
+Este material fue elaborado con asistencia de Claude (Anthropic) y revisado por Jesús Armando Tapia Gallegos.
