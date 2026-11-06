@@ -12,7 +12,7 @@ Actualizado: 19 de octubre de 2026
 | Archivo | Estado |
 |---|---|
 | `index.html` | Completo. Botón de registro al formulario (pestaña nueva); aviso visible; leyenda de demostración |
-| `aviso-privacidad.html` | Borrador con datos del formulario, finalidades y correo ARCO; pendiente de revisión legal |
+| `aviso-privacidad.html` | Versión simplificada; pendiente de revisión legal de 8 temas |
 | `css/styles.css` | Mobile first; colores de marca son placeholders |
 | `js/config.js`, `js/main.js` | `FORM_URL` y `PRIVACY_URL`; no guarda nada en el navegador |
 | `README.md` | Cambio de URL, QR, checklist previo al evento |
@@ -24,27 +24,29 @@ Responsable: Jesús Armando Tapia Gallegos y Acambaro.com.mx. Contacto de privac
 - **Hecho (navegador integrado):** vertical 375 px y horizontal 1024×768 sin desbordamiento; botón abre `FORM_URL` en pestaña nueva; el aviso se abre desde la página; sin `localStorage` ni cookies; páginas publicadas responden 200.
 - **No verificado:** Android e iOS reales, vertical y horizontal. Tampoco se probó el formulario de punta a punta ni en incógnito.
 
-## Revisión del aviso
-- **Página de revisión (privada, compartir con Indyra desde el menú Compartir):** https://claude.ai/artifact/9TR8f1CoA46UA5V5wrkCPY
-- Cada `[ DATO ]` es una ficha asignada a Indyra o a Armando; las respuestas se guardan en un almacén compartido y cada edición queda firmada.
-- La página trae su propia copia de `aviso-privacidad.html`: si el aviso cambia en el repositorio, hay que volver a publicarla.
-- Al terminar, Claude lee las respuestas, actualiza el aviso y el Word, y hace el último commit en la rama `aviso-privacidad-v2`.
+## Aviso de privacidad: versión simplificada (decidido el 5 de noviembre de 2026)
+- `aviso-privacidad.html` y `aviso-privacidad-actualizado.docx` son ahora la versión simplificada. La versión completa anterior queda como referencia en `aviso-privacidad-completo.html` y `.docx` (no se publica).
+- Ya resueltos: responsable (Jesús Armando Tapia Gallegos), domicilio fiscal y fecha de la última actualización.
+- Comparación de las dos versiones: `informe-simplificacion-aviso-privacidad.docx`.
 
-## Propuesta simplificada del aviso
-`aviso-privacidad-simplificado.html` y `.docx`: 619 palabras y 10 datos pendientes, frente a 1,048 palabras y 17 de la versión completa. Indyra elige cuál se publica.
-
-Informe para Indyra y Armando con la comparación, condiciones, pendientes y el texto simplificado: `informe-simplificacion-aviso-privacidad.docx`.
-
-Solo vale si se hacen estos cambios (Armando):
+**Antes de publicarla (Armando), para que el aviso coincida con lo que se recaba:**
 - Quitar del formulario los campos “Ciudad o estado” y “Comentario breve”.
 - Quitar la copia oculta a Proton y registrar el envío en la hoja.
 - Usar Gemini en nivel de pago.
 
-Y si Indyra confirma que bastan:
-- Describir a los encargados por tipo, sin la ubicación de cada uno.
-- Un solo plazo de conservación para todos los datos.
+**Temas para revisar con Indyra (8):**
+1. `[ DATO: confirmar si requiere consentimiento específico o base distinta (Indyra) ]` (sección 3)
+2. `[ DATO: plazo de respuesta ARCO según la ley vigente ]` (sección 5)
+3. `[ DATO: nombre y datos de contacto de la autoridad vigente ]` (sección 5)
+4. `[ DATO: confirmar si BAJA basta como mecanismo de revocación (Indyra) ]` (sección 6)
+5. `[ DATO: plazo único de conservación (Indyra) ]` (sección 6)
+6. `[ DATO: confirmar si además se avisará por correo a quienes aceptaron contacto (Indyra) ]` (sección 8)
+7. `[ DATO: decisión de Indyra sobre la aclaración ]` (correo del diagnóstico)
+8. `[ DATO: confirmar obligaciones aplicables ]` (correo comercial y BAJA)
 
-La página de revisión trabaja sobre la versión completa; si se elige la simplificada, hay que volver a publicarla.
+La sección 7 (encargados) la resuelve Armando.
+
+**Página de revisión:** https://claude.ai/artifact/9TR8f1CoA46UA5V5wrkCPY. Trae su propia copia de `aviso-privacidad.html`: si el aviso cambia en el repositorio, hay que volver a publicarla.
 
 ## Pendientes
 **Legales (para revisión de Indyra)**
