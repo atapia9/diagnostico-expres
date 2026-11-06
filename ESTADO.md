@@ -13,7 +13,6 @@ Actualizado: 19 de octubre de 2026
 |---|---|
 | `index.html` | Completo. Botón de registro al formulario (pestaña nueva); aviso visible; leyenda de demostración |
 | `aviso-privacidad.html` | Borrador con datos del formulario, finalidades y correo ARCO; pendiente de revisión legal |
-| `revision-aviso.html` | Herramienta interna para resolver cada `[ DATO ]` (Indyra o Armando) con vista previa, exportar/importar respuestas y descargar el aviso final. No se publica: el flujo de Pages no la copia |
 | `css/styles.css` | Mobile first; colores de marca son placeholders |
 | `js/config.js`, `js/main.js` | `FORM_URL` y `PRIVACY_URL`; no guarda nada en el navegador |
 | `README.md` | Cambio de URL, QR, checklist previo al evento |
@@ -24,6 +23,12 @@ Responsable: Jesús Armando Tapia Gallegos y Acambaro.com.mx. Contacto de privac
 ## Pruebas
 - **Hecho (navegador integrado):** vertical 375 px y horizontal 1024×768 sin desbordamiento; botón abre `FORM_URL` en pestaña nueva; el aviso se abre desde la página; sin `localStorage` ni cookies; páginas publicadas responden 200.
 - **No verificado:** Android e iOS reales, vertical y horizontal. Tampoco se probó el formulario de punta a punta ni en incógnito.
+
+## Revisión del aviso
+- **Página de revisión (privada, compartir con Indyra desde el menú Compartir):** https://claude.ai/artifact/9TR8f1CoA46UA5V5wrkCPY
+- Cada `[ DATO ]` es una ficha asignada a Indyra o a Armando; las respuestas se guardan en un almacén compartido y cada edición queda firmada.
+- La página trae su propia copia de `aviso-privacidad.html`: si el aviso cambia en el repositorio, hay que volver a publicarla.
+- Al terminar, Claude lee las respuestas, actualiza el aviso y el Word, y hace el último commit en la rama `aviso-privacidad-v2`.
 
 ## Pendientes
 **Legales (para revisión de Indyra)**
