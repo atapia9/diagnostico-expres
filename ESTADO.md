@@ -24,6 +24,28 @@ Responsable: Jesús Armando Tapia Gallegos y Acambaro.com.mx. Contacto de privac
 - **Hecho (navegador integrado):** vertical 375 px y horizontal 1024×768 sin desbordamiento; botón abre `FORM_URL` en pestaña nueva; el aviso se abre desde la página; sin `localStorage` ni cookies; páginas publicadas responden 200.
 - **No verificado:** Android e iOS reales, vertical y horizontal. Tampoco se probó el formulario de punta a punta ni en incógnito.
 
+## Revisión del aviso
+- **Página de revisión (privada, compartir con Indyra desde el menú Compartir):** https://claude.ai/artifact/9TR8f1CoA46UA5V5wrkCPY
+- Cada `[ DATO ]` es una ficha asignada a Indyra o a Armando; las respuestas se guardan en un almacén compartido y cada edición queda firmada.
+- La página trae su propia copia de `aviso-privacidad.html`: si el aviso cambia en el repositorio, hay que volver a publicarla.
+- Al terminar, Claude lee las respuestas, actualiza el aviso y el Word, y hace el último commit en la rama `aviso-privacidad-v2`.
+
+## Propuesta simplificada del aviso
+`aviso-privacidad-simplificado.html` y `.docx`: 619 palabras y 10 datos pendientes, frente a 1,048 palabras y 17 de la versión completa. Indyra elige cuál se publica.
+
+Informe para Indyra y Armando con la comparación, condiciones, pendientes y el texto simplificado: `informe-simplificacion-aviso-privacidad.docx`.
+
+Solo vale si se hacen estos cambios (Armando):
+- Quitar del formulario los campos “Ciudad o estado” y “Comentario breve”.
+- Quitar la copia oculta a Proton y registrar el envío en la hoja.
+- Usar Gemini en nivel de pago.
+
+Y si Indyra confirma que bastan:
+- Describir a los encargados por tipo, sin la ubicación de cada uno.
+- Un solo plazo de conservación para todos los datos.
+
+La página de revisión trabaja sobre la versión completa; si se elige la simplificada, hay que volver a publicarla.
+
 ## Pendientes
 **Legales (para revisión de Indyra)**
 1. Domicilio completo del responsable (sección 1).
