@@ -1,6 +1,6 @@
-# Diagnóstico expréss · Acambaro.com.mx
+# Diagnóstico exprés · Acambaro.com.mx
 
-Sitio estático de demostración para el stand “Diagnóstico expréss” en Conexión Emprendedora UnADM 2026 (18 al 20 de noviembre de 2026, CDMX).
+Sitio estático de demostración para el stand “Diagnóstico exprés” en Conexión Emprendedora UnADM 2026 (18 al 20 de noviembre de 2026, CDMX).
 
 El sitio **no recaba datos**: explica el servicio y dirige a un formulario externo. Sin analytics, cookies, fuentes externas ni scripts de terceros.
 
