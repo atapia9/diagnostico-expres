@@ -55,11 +55,20 @@ body {
   align-items: center;
   gap: 1rem;
 }
-.encabezado h1 {
+.encabezado h1,
+.titulo-sitio {
   margin: 0;
   font-size: 1.9rem;
+  font-weight: 700;
   line-height: 1.15;
 }
+.encabezado .titulo-pagina {
+  display: block;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, .35);
+}
+.encabezado .titulo-pagina h1 { font-size: 1.5rem; }
 .marca {
   margin: .15rem 0 0;
   font-size: 1.1rem;
@@ -192,7 +201,9 @@ a:focus-visible, .boton:focus-visible {
 @media (min-width: 768px) {
   html { font-size: 125%; } /* 20px base */
   .contenedor { max-width: 52rem; padding: 0 2rem; }
-  .encabezado h1 { font-size: 2.6rem; }
+  .encabezado h1,
+  .titulo-sitio { font-size: 2.6rem; }
+  .encabezado .titulo-pagina h1 { font-size: 1.9rem; }
   .logo { height: 6rem; }
   .acciones { grid-template-columns: 1fr 1fr; }
 }
