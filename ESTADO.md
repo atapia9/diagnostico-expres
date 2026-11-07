@@ -1,4 +1,4 @@
-# Estado actual · Diagnóstico expréss
+# Estado actual · Diagnóstico exprés
 
 Actualizado: 19 de octubre de 2026
 
