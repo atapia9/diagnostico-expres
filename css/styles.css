@@ -1,16 +1,19 @@
-/* Diagnóstico exprés · Acambaro.com.mx
-   Mobile first. Paleta sobria; los colores de marca son PENDIENTE. */
+/* Diagnóstico exprés · acambaro.com.mx
+   Mobile first. Tokens del Manual de Identidad de Marca (kit v1.0). */
 
 :root {
-  /* PENDIENTE: reemplazar por los colores de Acambaro.com.mx */
-  --color-marca: #1f4e5f;
-  --color-marca-oscuro: #153742;
-  --color-acento: #b4531a;
-  --color-fondo: #f7f6f2;
-  --color-superficie: #ffffff;
-  --color-texto: #1b1f23;
-  --color-texto-suave: #4a5258;
-  --color-borde: #d5d2c8;
+  /* Paleta oficial derivada del logotipo acambaro.com.mx */
+  --acambaro-blue: #0D4B8C;      /* Azul Cobalto Acámbar: compás, estructura, encabezados */
+  --acambaro-amber: #F5A81C;     /* Ámbar Impulso: acentos y llamados a la acción. Nunca para texto pequeño sobre blanco */
+  --acambaro-charcoal: #333333;  /* Carbón Tipográfico: texto principal */
+  --acambaro-surface: #F8FAFC;   /* Gris Niebla: fondos de página y paneles */
+  --acambaro-border: #E2E8F0;    /* Líneas divisorias sutiles */
+  --acambaro-white: #FFFFFF;     /* Blanco Puro: tarjetas y alto contraste */
+
+  /* Pila tipográfica geométrica (sin descargar fuentes externas) */
+  --font-heading: 'Montserrat', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Inter', 'Segoe UI', Arial, sans-serif;
+
   --radio: 14px;
 }
 
@@ -20,11 +23,13 @@ html { font-size: 112.5%; } /* 18px base */
 
 body {
   margin: 0;
-  background: var(--color-fondo);
-  color: var(--color-texto);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--acambaro-surface);
+  color: var(--acambaro-charcoal);
+  font-family: var(--font-body);
   line-height: 1.6;
 }
+
+a { color: var(--acambaro-blue); }
 
 .contenedor {
   width: 100%;
@@ -37,17 +42,18 @@ body {
   position: absolute;
   left: -999px;
   top: 0;
-  background: var(--color-superficie);
-  color: var(--color-texto);
+  background: var(--acambaro-white);
+  color: var(--acambaro-charcoal);
   padding: .75rem 1rem;
   z-index: 10;
 }
 .saltar:focus { left: 0; }
 
-/* Encabezado */
+/* Encabezado: azul cobalto con filete ámbar, como en el manual */
 .encabezado {
-  background: var(--color-marca);
-  color: #fff;
+  background: var(--acambaro-blue);
+  color: var(--acambaro-white);
+  border-bottom: 6px solid var(--acambaro-amber);
   padding: 1.5rem 0;
 }
 .encabezado .contenedor {
@@ -58,6 +64,7 @@ body {
 .encabezado h1,
 .titulo-sitio {
   margin: 0;
+  font-family: var(--font-heading);
   font-size: 1.9rem;
   font-weight: 700;
   line-height: 1.15;
@@ -69,26 +76,33 @@ body {
   border-top: 1px solid rgba(255, 255, 255, .35);
 }
 .encabezado .titulo-pagina h1 { font-size: 1.5rem; }
+
+/* Logotipo tipográfico: caja baja, nombre en negritas y dominio a continuación */
 .marca {
   margin: .15rem 0 0;
+  font-family: var(--font-heading);
   font-size: 1.1rem;
-  letter-spacing: .02em;
-  opacity: .92;
+  letter-spacing: -.02em;
 }
+.marca-nombre { font-weight: 800; }
+.marca-dominio { font-weight: 700; }
+
+/* Imagotipo original a todo color sobre blanco, con margen de aislamiento
+   y por encima del mínimo digital de 110 px de ancho */
 .logo {
   flex: none;
-  width: auto;
-  height: 4.5rem;
-  padding: .25rem .5rem;
-  background: #fff;
+  width: 7rem;
+  height: auto;
+  padding: .5rem;
+  background: var(--acambaro-white);
   border-radius: var(--radio);
 }
 .borrador {
   display: inline-block;
   margin: .5rem 0 0;
   padding: .25rem .75rem;
-  background: var(--color-acento);
-  color: #fff;
+  background: var(--acambaro-amber);
+  color: var(--acambaro-charcoal);
   font-weight: 700;
   border-radius: 999px;
   font-size: .95rem;
@@ -101,8 +115,10 @@ section { margin-bottom: 1.75rem; }
 
 h2 {
   margin: 0 0 .5rem;
+  font-family: var(--font-heading);
   font-size: 1.4rem;
-  color: var(--color-marca-oscuro);
+  font-weight: 700;
+  color: var(--acambaro-blue);
 }
 p { margin: 0 0 .75rem; }
 
@@ -116,8 +132,9 @@ p { margin: 0 0 .75rem; }
 
 .leyenda-demo {
   padding: .75rem 1rem;
-  background: var(--color-superficie);
-  border-left: 6px solid var(--color-acento);
+  background: var(--acambaro-white);
+  border: 1px solid var(--acambaro-border);
+  border-left: 6px solid var(--acambaro-amber);
   border-radius: var(--radio);
   font-weight: 600;
 }
@@ -134,8 +151,8 @@ p { margin: 0 0 .75rem; }
   counter-increment: paso;
   position: relative;
   padding: 1rem 1rem 1rem 4rem;
-  background: var(--color-superficie);
-  border: 1px solid var(--color-borde);
+  background: var(--acambaro-white);
+  border: 1px solid var(--acambaro-border);
   border-radius: var(--radio);
 }
 .pasos li::before {
@@ -148,14 +165,15 @@ p { margin: 0 0 .75rem; }
   height: 2.2rem;
   display: grid;
   place-items: center;
-  background: var(--color-marca);
-  color: #fff;
+  background: var(--acambaro-blue);
+  color: var(--acambaro-white);
+  font-family: var(--font-heading);
   font-weight: 700;
   border-radius: 50%;
 }
 .paso-titulo { font-weight: 700; }
 
-/* Botones */
+/* Botones: el llamado a la acción va en ámbar con texto carbón */
 .acciones {
   display: grid;
   gap: 1rem;
@@ -168,31 +186,40 @@ p { margin: 0 0 .75rem; }
   min-height: 3.75rem;
   padding: .9rem 1.5rem;
   border-radius: var(--radio);
-  border: 3px solid var(--color-marca);
+  border: 3px solid var(--acambaro-blue);
+  font-family: var(--font-heading);
   font-size: 1.2rem;
   font-weight: 700;
   text-align: center;
   text-decoration: none;
 }
-.boton-principal { background: var(--color-marca); color: #fff; }
-.boton-principal:hover { background: var(--color-marca-oscuro); }
-.boton-secundario { background: var(--color-superficie); color: var(--color-marca-oscuro); }
-.boton-secundario:hover { background: #eef3f4; }
+.boton-principal {
+  background: var(--acambaro-amber);
+  border-color: var(--acambaro-amber);
+  color: var(--acambaro-charcoal);
+}
+.boton-principal:hover { filter: brightness(.94); }
+.boton-secundario {
+  background: var(--acambaro-white);
+  color: var(--acambaro-blue);
+}
+.boton-secundario:hover { background: var(--acambaro-surface); }
 
 a:focus-visible, .boton:focus-visible {
-  outline: 4px solid var(--color-acento);
+  outline: 4px solid var(--acambaro-blue);
   outline-offset: 3px;
 }
 
 /* Pie */
 .pie {
-  border-top: 1px solid var(--color-borde);
+  background: var(--acambaro-white);
+  border-top: 1px solid var(--acambaro-border);
   padding: 1.25rem 0 2rem;
-  color: var(--color-texto-suave);
+  color: var(--acambaro-charcoal);
   font-size: .95rem;
 }
 .pie p { margin: 0 0 .4rem; }
-.pie a { color: var(--color-marca-oscuro); font-weight: 600; }
+.pie a { font-weight: 600; }
 
 /* Aviso legal */
 .texto-legal ul { padding-left: 1.25rem; margin: 0 0 .75rem; }
@@ -204,7 +231,7 @@ a:focus-visible, .boton:focus-visible {
   .encabezado h1,
   .titulo-sitio { font-size: 2.6rem; }
   .encabezado .titulo-pagina h1 { font-size: 1.9rem; }
-  .logo { height: 6rem; }
+  .logo { width: 9rem; }
   .acciones { grid-template-columns: 1fr 1fr; }
 }
 
