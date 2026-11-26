@@ -1,8 +1,9 @@
 # Estado actual · Diagnóstico exprés
 
-Actualizado: 19 de octubre de 2026
+Actualizado: 25 de noviembre de 2026
 
 ## Publicación
+- **Uso:** opción permanente de entrada para Acambaro.com.mx (desde el 25 de noviembre de 2026 ya no está ligado a ningún evento).
 - **Sitio:** https://atapia9.github.io/diagnostico-expres/
 - **Repositorio (público):** https://github.com/atapia9/diagnostico-expres
 - **Despliegue:** GitHub Actions, rama `main` → GitHub Pages. Último despliegue exitoso.
@@ -11,11 +12,11 @@ Actualizado: 19 de octubre de 2026
 ## Qué hay
 | Archivo | Estado |
 |---|---|
-| `index.html` | Completo. Botón de registro al formulario (pestaña nueva); aviso visible; leyenda de demostración |
+| `index.html` | Completo. Botón de registro al formulario (pestaña nueva); aviso visible; leyenda de que el sitio no recaba datos |
 | `aviso-privacidad.html` | Versión simplificada; pendiente de revisión legal de 8 temas |
 | `css/styles.css` | Mobile first; colores de marca son placeholders |
 | `js/config.js`, `js/main.js` | `FORM_URL` y `PRIVACY_URL`; no guarda nada en el navegador |
-| `README.md` | Cambio de URL, QR, checklist previo al evento |
+| `README.md` | Cambio de URL, QR, checklist de operación |
 | `.github/workflows/pages.yml`, `.gitignore` | Operativos |
 
 Responsable: Jesús Armando Tapia Gallegos y Acambaro.com.mx. Contacto de privacidad y ARCO: privacidad@acambaro.com.mx.
@@ -63,9 +64,10 @@ La sección 7 (encargados) la resuelve Armando.
 
 **Formulario de Google:** actualizado (título, correo de privacidad y ajustes). Falta únicamente reflejar en él lo que resuelva la revisión legal.
 
-**Antes del evento (18 al 20 de noviembre de 2026)**
-- Generar e imprimir el QR y escanearlo en Android e iOS.
-- Tablet con batería y conexión; aviso de privacidad visible en el stand.
+**Como entrada permanente**
+- Enlazar el Diagnóstico exprés desde Acambaro.com.mx.
+- Generar el QR y escanearlo en Android e iOS.
+- Volver a publicar la página de revisión del aviso (cambió la leyenda inicial y la fecha, ahora 25 de noviembre de 2026).
 
 ---
 Este material fue elaborado con asistencia de Claude (Anthropic) y revisado por Jesús Armando Tapia Gallegos.
