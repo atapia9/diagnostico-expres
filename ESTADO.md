@@ -31,9 +31,9 @@ Responsable: Jesús Armando Tapia Gallegos y Acambaro.com.mx. Contacto de privac
 - Comparación de las dos versiones: `informe-simplificacion-aviso-privacidad.docx`.
 
 **Para que el formulario y el script coincidan con el aviso (Armando):** desde el 25 de noviembre de 2026 el aviso ya no lista “Ciudad o estado” ni “Comentario breve”, y Proton solo recibe las solicitudes de privacidad.
-- Quitar del formulario los campos “Ciudad o estado” y “Comentario breve”.
-- Quitar la copia oculta a Proton y registrar el envío en la hoja.
-- Usar Gemini en nivel de pago.
+- ~~Quitar del formulario los campos “Ciudad o estado” y “Comentario breve”.~~ Hecho (confirmado por Armando el 25 de noviembre de 2026).
+- ~~Quitar la copia oculta a Proton y registrar el envío en la hoja.~~ Hecho (confirmado por Armando el 25 de noviembre de 2026).
+- Usar Gemini en nivel de pago. Pendiente.
 
 **Temas de Indyra resueltos en el aviso (7 de noviembre de 2026, commit `c93b175`):**
 1. ~~Consentimiento de la casilla de contacto comercial~~ (sección 3): finalidad secundaria y opcional; la casilla viene desmarcada y la negativa no condiciona el diagnóstico.
