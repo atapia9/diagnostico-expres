@@ -30,7 +30,7 @@ Responsable: Jesús Armando Tapia Gallegos y Acambaro.com.mx. Contacto de privac
 - Ya resueltos: responsable (Jesús Armando Tapia Gallegos), domicilio fiscal y fecha de la última actualización.
 - Comparación de las dos versiones: `informe-simplificacion-aviso-privacidad.docx`.
 
-**Antes de publicarla (Armando), para que el aviso coincida con lo que se recaba:**
+**Para que el formulario y el script coincidan con el aviso (Armando):** desde el 25 de noviembre de 2026 el aviso ya no lista “Ciudad o estado” ni “Comentario breve”, y Proton solo recibe las solicitudes de privacidad.
 - Quitar del formulario los campos “Ciudad o estado” y “Comentario breve”.
 - Quitar la copia oculta a Proton y registrar el envío en la hoja.
 - Usar Gemini en nivel de pago.
@@ -43,13 +43,11 @@ Responsable: Jesús Armando Tapia Gallegos y Acambaro.com.mx. Contacto de privac
 5. ~~Plazo único de conservación~~ (sección 6): 6 meses desde el registro; después solo se guardan el correo y la fecha en una lista de exclusión interna.
 6. ~~Aviso por correo de cambios~~ (sección 8): sí, además de publicarlos con su fecha, se avisa por correo a los contactos activos.
 
-La sección 7 (encargados) la resolvió Armando: Google (Formularios y Hojas), Google AI Studio, Resend y Proton, con servidores que pueden estar fuera de México.
+La sección 7 (encargados) la resolvió Armando: Google (Formularios y Hojas), Google AI Studio, Resend y Proton (solo para las solicitudes de privacidad), con servidores que pueden estar fuera de México.
 
 **Temas de Indyra pendientes (fuera del aviso):**
 7. `[ DATO: decisión de Indyra sobre la aclaración ]` (correo del diagnóstico)
 8. `[ DATO: confirmar obligaciones aplicables ]` (correo comercial y BAJA)
-
-**Por confirmar:** el aviso publicado todavía lista “Ciudad o estado” y “Comentario breve” como datos opcionales y nombra a Proton como receptor de una copia de cada diagnóstico. Eso no coincide con la lista “Antes de publicarla”: hay que decidir si esos pasos siguen en pie o si el aviso se corrige.
 
 **Página de revisión:** https://claude.ai/artifact/9TR8f1CoA46UA5V5wrkCPY. Trae su propia copia del aviso: es el borrador del 5 de noviembre con sus 7 marcadores `[ DATO ]`, sin la referencia al evento y con fecha del 25 de noviembre de 2026 (versión 4). No incluye las resoluciones de arriba; se dejó así a propósito el 25 de noviembre para que sus fichas sigan funcionando.
 
