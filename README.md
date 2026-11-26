@@ -1,6 +1,6 @@
 # Diagnóstico exprés · Acambaro.com.mx
 
-Sitio estático de demostración para el stand “Diagnóstico exprés” en Conexión Emprendedora UnADM 2026 (18 al 20 de noviembre de 2026, CDMX).
+Sitio estático del Diagnóstico exprés: opción permanente de entrada a los servicios de Acambaro.com.mx.
 
 El sitio **no recaba datos**: explica el servicio y dirige a un formulario externo. Sin analytics, cookies, fuentes externas ni scripts de terceros.
 
@@ -26,7 +26,7 @@ const FORM_URL = "https://…";        // enlace del formulario
 const PRIVACY_URL = "aviso-privacidad.html"; // o la URL del aviso final
 ```
 
-Si `FORM_URL` vuelve a contener la palabra `PENDIENTE`, la página muestra un aviso amarillo de demostración.
+Si `FORM_URL` vuelve a contener la palabra `PENDIENTE`, la página muestra un aviso amarillo de enlace pendiente.
 
 Otros pendientes en el código: busca `PENDIENTE` en todos los archivos (colores de marca, domicilio, plazo de conservación, fecha del aviso, confirmación de la lista de datos contra el formulario final).
 
@@ -55,13 +55,13 @@ Abre `http://localhost:8000`.
    pip install qrcode[pil]
    qr "https://atapia9.github.io/diagnostico-expres/" > qr-diagnostico.png
    ```
-3. Imprímelo al menos de 8 × 8 cm, con margen blanco, y **escanéalo con dos teléfonos distintos** antes de imprimir en cantidad.
+3. Si lo vas a imprimir, hazlo al menos de 8 × 8 cm, con margen blanco, y **escanéalo con dos teléfonos distintos** antes de imprimir en cantidad.
 
-## Checklist previo al evento
+## Checklist de operación
 
 - [ ] Sitio funcionando en la URL pública (abre en datos móviles y en Wi‑Fi)
 - [ ] `FORM_URL` real configurada y formulario probado de punta a punta
 - [ ] Aviso de privacidad final revisado legalmente y sin textos `PENDIENTE`
 - [ ] QR impreso, escaneado y probado en Android e iOS
-- [ ] Tablet con batería completa, cargador y conexión (plan de datos de respaldo)
-- [ ] Aviso de privacidad visible en el stand (impreso o abierto en la tablet)
+- [ ] Enlace al Diagnóstico exprés visible desde Acambaro.com.mx
+- [ ] Si se usa en un evento o en material impreso: aviso de privacidad visible junto al QR
